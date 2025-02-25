@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8" />
+    <title>ZenLedger</title>
+    <link rel="stylesheet" href="css/Login.css" />
+    <script src="js/JavaScript.js"></script>
+</head>
+<body>
+    <header>
+        <h1>ZenLeger</h1>
+    </header>
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field" id="fn">
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div class="input-field" id="ln">
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <div class="input-field" id="addy">
+                        <input type="text" placeholder="Address" required>
+                    </div>
+                    <div class="input-field" id="DOB">
+                        <input type="date" placeholder="DOB" required>
+                    </div>
+                    <div class="input-field" id="email">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-field hidden" id="username">
+                        <input type="text" placeholder="Username" required>
+                    </div>
+                    <div class="input-field hidden" id="password">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <a href="ForgotPassword.html" class="forgot-password" id="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+                <div class="button-field">
+                    <button type="button" id="signup">Sign Up</button>
+                    <button type="button" id="signin" class="disable">Sign In</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="message-box" id="message-box">
+        Check your email for more further steps
+    </div>
+
+    <script>
+        let signup = document.getElementById("signup");
+        let signin = document.getElementById("signin");
+        let fn = document.getElementById("fn");
+        let ln = document.getElementById("ln")
+        let title = document.getElementById('title');
+        let addy = document.getElementById("addy");
+        let DOB = document.getElementById("DOB");
+        let email = document.getElementById("email");
+
+        // Sign In Fields
+        let username = document.getElementById("username");
+        let password = document.getElementById("password");
+        let forgotPassword = document.getElementById("forgot-password");
+
+        signin.onclick = function () {
+            title.innerHTML = "Sign In";
+            fn.classList.add("hidden");
+            ln.classList.add("hidden");
+            addy.classList.add("hidden");
+            DOB.classList.add("hidden");
+            email.classList.add("hidden");
+            username.classList.remove("hidden");
+            password.classList.remove("hidden");
+            forgotPassword.style.display = "block";
+            signup.classList.add("disable");
+            signin.classList.remove("disable");
+        }
+
+        signup.onclick = function () {
+            fn.classList.remove("hidden");
+            ln.classList.remove("hidden");
+            addy.classList.remove("hidden");
+            DOB.classList.remove("hidden");
+            email.classList.remove("hidden");
+            // Hide Sign In Fields
+            username.classList.add("hidden");
+            password.classList.add("hidden");
+            forgotPassword.style.display = "none";
+            title.innerHTML = "Sign Up";
+            signup.classList.remove("disable");
+            signin.classList.add("disable");
+        }
+
+        let submitButton = document.querySelector(".submit-button");
+        let messageBox = document.getElementById("message-box");
+
+        submitButton.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Only show message if Sign Up is active
+            if (!signup.classList.contains("disable")) {
+                messageBox.classList.add("show");
+
+                // Hide message box after 3 seconds
+                setTimeout(function () {
+                    messageBox.classList.remove("show");
+                }, 3000);
+            }
+        });
+    </script>
+
+</body>
+</html>
